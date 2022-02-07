@@ -6,7 +6,7 @@ Animation plugin for PikaJS
 
 [PikaJS](https://github.com/Scottie35/PikaJS) is a client-side scripting library like jQuery, but 7 times smaller, faster, and more efficient.
 
-** You must include PikaJS before adding PikaJS Animate to your page! **
+**You must include PikaJS before adding PikaJS Animate to your page!**
 
 ## What does it do?
 
@@ -70,9 +70,9 @@ The *motion* option sets the Motion Function used for the animation. Default is 
 - overshoot - moves a bit beyond the endpoint, then moves back
 - bounce - it's, well, bouncy
 
-  All the motion functions are defined in `$.animate.motion`. The default is `$.animate.motion.default`, which is 'smooth'. To change the default motion, just set `$.animate.motion.default` to the string name of one of the above motion functions.
+All the motion functions are defined in `$.animate.motion`. The default is `$.animate.motion.default`, which is 'smooth'. To change the default motion, just set `$.animate.motion.default` to the string name of one of the above motion functions.
 
-  You can also add your own motion functions by `$.extend`-ing `$.animate.motion`. All motion functions take an input, x. This input varies between 0.00 and 1.00 over the *duration* in ms of the animation. So, the motion functions simply mathematically modify the x input and return a different value. See the source code for more info.
+You can also add your own motion functions by `$.extend`-ing `$.animate.motion`. All motion functions take an input, x. This input varies between 0.00 and 1.00 over the *duration* in ms of the animation. So, the motion functions simply mathematically modify the x input and return a different value. See the source code for more info.
 
 The *before* function, if defined, is called prior to the animation. The function's *this* = the Pika object `.animate` was called on.
 
@@ -97,7 +97,9 @@ Options are as follows:
 
 ### .slide
 
-`.slide` moves an element on the page in any of 8 directions. If the element is visible on the page, it moves it until it's off the page. If the element is already off the page, it moves it either MORE off the page, or back onto the screen. IOW, you'd want to do `.slideUp` to make a DIV disappear off the screen, and then `.slideDown` to bring it back into view on the page.
+`.slide` moves an element on the page in any of 8 directions. If the element is visible on the page, it moves it until it's off the page. If the element is already off the page, it moves it either MORE off the page, or back onto the screen.
+
+IOW, you'd want to do `.slideUp` to make a DIV disappear off the screen, and then `.slideDown` to bring it back into view on the page.
 
 Use it like so:
 
@@ -121,8 +123,8 @@ Options that can be defined in the OPS_OBJECT are as follows:
   
 Options that can be defined in the OPS_OBJECT are as follows:
 
-    - duration - the time in ms to execute the fade. Default is 400 ms.
-    - offset - A positive or negative integer to add to the final scroll position. Default is 0.
+- duration - the time in ms to execute the fade. Default is 400 ms.
+- offset - A positive or negative integer to add to the final scroll position. Default is 0.
 
 `.scrollTo` does NOT use `.animate` internally since it needs to animate window.scrollTo.
 
@@ -130,8 +132,8 @@ Options that can be defined in the OPS_OBJECT are as follows:
 
 PikaJS Animate includes 10 easy-to-use functions to get you rolling. They do exactly what they say!
 
-   `.fadeIn(delay, remove, duration)`
-   `.fadeOut(delay, remove, duration)`
+- `.fadeIn(delay, remove, duration)`
+- `.fadeOut(delay, remove, duration)`
 
 Remember when using these slide functions that if you call one to slide an element off the screen, you need to call the opposite function to bring it back.
 
@@ -146,4 +148,4 @@ For example: `.slideUpLeft` to make it disappear, and then `.slideDownRight` to 
 - `.slideUpRight(delay, remove, duration)`
 - `.slideDownRight(delay, remove, duration)`
 
-That's all, folks!
+**That's all, folks!**
