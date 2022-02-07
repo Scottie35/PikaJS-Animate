@@ -4,7 +4,7 @@ Animation plugin for PikaJS
 
 ## What is PikaJS?
 
-[PikaJS] (https://github.com/Scottie35/PikaJS) is a client-side scripting library like jQuery, but 7 times smaller, faster, and more efficient.
+[PikaJS](https://github.com/Scottie35/PikaJS) is a client-side scripting library like jQuery, but 7 times smaller, faster, and more efficient.
 
 ** You must include PikaJS before adding PikaJS Animate to your page! **
 
