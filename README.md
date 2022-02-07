@@ -51,7 +51,7 @@ Each value will be increased or decreased depending on the starting value of tha
 
 For CSS values that don't have a defined default, `.animate` uses `getComputedStyle`. For example, when opacity=1, `.animate` will get it for you. You do NOT need to define opacity=1 in your stylesheet or inline CSS just to make `.animate` happy!
 
-`.animate` can also change **non-CSS** Node attributes such as clientHeight, offsetHeight, scrollHeight, scrollTop, etc. Simply include them in the CSS Object passed into `.animate`. When `.animate`` can't find the param as CSS via `getComputedStyle`, it defaults to searching for that param as a Node attribute.
+`.animate` can also change **non-CSS** Node attributes such as clientHeight, offsetHeight, scrollHeight, scrollTop, etc. Simply include them in the CSS Object passed into `.animate`. When `.animate` can't find the param as CSS via `getComputedStyle`, it defaults to searching for that param as a Node attribute.
 
 The *duration* option sets the time of the animation in ms. Default is 400 ms. **NOTE:** If this number is set too low, the motion functions will all appear the same!
 
