@@ -258,7 +258,7 @@
 		// Misc
 
 		scrollTo: function(opts) {
-			var el = $(this)[0], de=Doc.documentElement, db=Doc.body, Win = window, sT=Win.scrollTo, mR = Math.round;
+			var el = $(this)[0], de=Doc.documentElement, db=Doc.body, Win = window, sTo=Win.scrollTo, mR = Math.round;
 			opts = opts || {};
 			if (!opts.duration) { opts.duration = 400; }
 			if (!opts.offset) { opts.offset = 0; }
@@ -288,19 +288,19 @@
 		 		skrol.top = begin + (diff * progress);
 				// Up scroll checks
 				if (up && skrol.top < 0) {
-					sT(skrol.left, 0);
+					sTo(skrol.left, 0);
 					return;
 				}
 				if (up && skrol.top < elSkrol) { skrol.top = elSkrol; }
 				// Down scroll checks
 				if (!up && skrol.top > maxSkrol) {
 					// Some elems are lower than max scroll-down, so stop:
-					sT(skrol.left, maxSkrol);
+					sTo(skrol.left, maxSkrol);
 					return;	
 				}
 				if (!up && skrol.top > elSkrol) { skrol.top = elSkrol; }
 				// Carry on
-	    	sT(skrol.left, skrol.top);
+	    	sTo(skrol.left, skrol.top);
 	    	if (runtime < dur) {
 		      (ReqAF && ReqAF(function(time) {
 			  		go(time, el, dur);
