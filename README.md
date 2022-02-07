@@ -61,14 +61,14 @@ The *remove* option calls .remove on the selected element after the animation is
 
 The *motion* option sets the Motion Function used for the animation. Default is 'smooth'.
 
-    - linear - linear motion
-    - smooth - a smooth motion that looks more 'natural' than linear
-    - fastslow - move fast, then move slow
-    - slowfast - move slow, then move fast
-    - accelerate - increase speed the whole time
-    - decelerate - decrease speed the whole time
-    - overshoot - moves a bit beyond the endpoint, then moves back
-    - bounce - it's, well, bouncy
+- linear - linear motion
+- smooth - a smooth motion that looks more 'natural' than linear
+- fastslow - move fast, then move slow
+- slowfast - move slow, then move fast
+- accelerate - increase speed the whole time
+- decelerate - decrease speed the whole time
+- overshoot - moves a bit beyond the endpoint, then moves back
+- bounce - it's, well, bouncy
 
   All the motion functions are defined in `$.animate.motion`. The default is `$.animate.motion.default`, which is 'smooth'. To change the default motion, just set `$.animate.motion.default` to the string name of one of the above motion functions.
 
@@ -88,10 +88,10 @@ Note that `.animate` uses `requestAnimationFrame` if possible, and is more robus
   
 Options are as follows:
 
-    - delay - delay in ms before fading. Default is 0.
-    - remove - removes element after fade. Default is false.
-    - duration - the time in ms to execute the fade. Default is 214 ms.
-    - dir - Either 'out' or 'in'. Default is 'out' (i.e. fade out)
+- delay - delay in ms before fading. Default is 0.
+- remove - removes element after fade. Default is false.
+- duration - the time in ms to execute the fade. Default is 214 ms.
+- dir - Either 'out' or 'in'. Default is 'out' (i.e. fade out)
 
 `.fade` uses `.animate` internally, including its own custom *before* and *done* functions.
 
@@ -105,11 +105,11 @@ Use it like so:
   
 Options that can be defined in the OPS_OBJECT are as follows:
 
-    - delay - delay in ms before fading. Default is 0.
-    - remove - removes element after fade. Default is false.
-    - duration - the time in ms to execute the fade. Default is 400 ms.
-    - dir - One of: 'up', 'down', 'left', 'right', 'upleft', 'downleft', 'upright', 'downright'. Order of words in diagonal dirs doesn't matter. Default is 'up' (i.e. slide up)
-    - motion - One of the 8 predefined motion functions (see `.animate` for more info)
+- delay - delay in ms before fading. Default is 0.
+- remove - removes element after fade. Default is false.
+- duration - the time in ms to execute the fade. Default is 400 ms.
+- dir - One of: 'up', 'down', 'left', 'right', 'upleft', 'downleft', 'upright', 'downright'. Order of words in diagonal dirs doesn't matter. Default is 'up' (i.e. slide up)
+- motion - One of the 8 predefined motion functions (see `.animate` for more info)
 
 `.slide` uses `.animate` internally, including its own custom *done* function.
 
@@ -137,13 +137,13 @@ Remember when using these slide functions that if you call one to slide an eleme
 
 For example: `.slideUpLeft` to make it disappear, and then `.slideDownRight` to make it re-appear.
 
-   `.slideUp(delay, remove, duration)`
-   `.slideDown(delay, remove, duration)`
-   `.slideLeft(delay, remove, duration)`
-   `.slideRight(delay, remove, duration)`
-   `.slideUpLeft(delay, remove, duration)`
-   `.slideDownLeft(delay, remove, duration)`
-   `.slideUpRight(delay, remove, duration)`
-   `.slideDownRight(delay, remove, duration)`
+- `.slideUp(delay, remove, duration)`
+- `.slideDown(delay, remove, duration)`
+- `.slideLeft(delay, remove, duration)`
+- `.slideRight(delay, remove, duration)`
+- `.slideUpLeft(delay, remove, duration)`
+- `.slideDownLeft(delay, remove, duration)`
+- `.slideUpRight(delay, remove, duration)`
+- `.slideDownRight(delay, remove, duration)`
 
 That's all, folks!
