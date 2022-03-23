@@ -30,8 +30,8 @@ The following will give you an idea of the accepted params (default values indic
 
     $('div.blah').animate({
       // CSS:
-      top: 200px,     // For example...
-      left: 100px,
+      top: '200px',     // For example...
+      left: '100px',
       opacity: 1
     }, {
       // OPTIONS:
