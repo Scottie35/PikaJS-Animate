@@ -1,5 +1,5 @@
 /** 
- *	@license PikaJS Animate plugin 1.0
+ *	@license PikaJS Animate plugin 1.0.1
  *	© 2022 Scott Ogrin
  * 	MIT License
  */
@@ -32,7 +32,7 @@
 				return Math.sqrt(1 - Mp(x - 1, 2));
 			},
 			overshoot: function(x) {
-				return 1 + c3 * Mp(x - 1, 3) + c1 * Mp(x - 1, 2);
+				return 1 + 2.70158 * Mp(x - 1, 3) + 1.70158 * Mp(x - 1, 2);
 			},
 			bounce: function(x) {
 				var a = 7.5625, b = 2.75;
