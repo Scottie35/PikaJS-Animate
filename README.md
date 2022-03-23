@@ -74,6 +74,8 @@ All the motion functions are defined in `$.animate.motion`. The default is `$.an
 
 You can also add your own motion functions by `$.extend`-ing `$.animate.motion`. All motion functions take an input, x. This input varies between 0.00 and 1.00 over the *duration* in ms of the animation. So, the motion functions simply mathematically modify the x input and return a different value. See the source code for more info.
 
+The `motion` option can also be a motion function as described above!
+
 The *before* function, if defined, is called prior to the animation. The function's *this* = the Pika object `.animate` was called on.
 
 The *done* function, if defined, is called after the animation is done. The function's *this* = the Pika object `.animate` was called on.
