@@ -2,6 +2,8 @@
 
 Animation plugin for PikaJS that is only **4.7kB** minified!!
 
+[Try the PikaJS Demo!](https://pikajs.com/)
+
 ## What is PikaJS?
 
 [PikaJS](https://github.com/Scottie35/PikaJS) is a client-side scripting library like jQuery, but 7 times smaller, faster, and more efficient.
