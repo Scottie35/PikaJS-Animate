@@ -1,5 +1,5 @@
 /** 
- *	@license PikaJS Animate plugin 1.0.1
+ *	@license PikaJS Animate plugin 1.1.0
  *	© 2022 Scott Ogrin
  * 	MIT License
  */
@@ -8,7 +8,7 @@
 
  	// Some Motion funcs borrowed from: https://github.com/gdsmith/jquery.easing/
  	$.animate = {
- 		Version: '1.0',
+ 		Version: '1.1.0',
  		motion: {
  			// These funcs modify the progress, x, as it moves from 0.00 to 1.00 over the duration in ms
  			// If duration is too short, you won't really see the effects of most of these!
@@ -260,8 +260,8 @@
 		scrollTo: function(opts) {
 			var el = $(this)[0], de=Doc.documentElement, db=Doc.body, Win = window, sTo=Win.scrollTo, mR = Math.round;
 			opts = opts || {};
-			if (!opts.duration) { opts.duration = 400; }
-			if (!opts.offset) { opts.offset = 0; }
+			opts.duration = opts.duration || 400;
+			opts.offset = opts.offset || 0;
 			var skrol = {
 				left: mR(Win.pageXOffset || de.scrollLeft || db.scrollLeft),
 				top: mR(Win.pageYOffset || de.scrollTop || db.scrollTop)
@@ -316,6 +316,32 @@
 	  		start = time || +new Date;
 	  		go(time, el, opts.duration);
 	  	})) || sT(go(time, el, opts.duration), 16); // setTimeout Fallback at default 60fps = 16ms
+		},
+
+		// Scrolls passed-in element so that el (target element) is at opts.position of scrollable 'this'
+		scroll: function(el, opts) {
+			var css = {};
+			opts = opts || {};
+			opts.direction = opts.direction || 'vertical';
+			opts.duration = opts.duration || 214;
+			opts.delay = opts.delay || 0;
+			opts.motion = opts.motion || $.animate.motion.default;
+			opts.position = opts.position || {};
+			opts.position.top = opts.position.top || 0;
+			opts.position.left = opts.position.left || 0;
+			if (opts.direction == 'vertical' || opts.direction == 'both') {
+				css.scrollTop = pI(this[0].scrollTop + el.position().top - opts.position.top);
+			}
+			if (opts.direction == 'horizontal' || opts.direction == 'both') {
+				css.scrollLeft = pI(this[0].scrollLeft + el.position().left - opts.position.left);
+			}
+			this.animate(css, {
+				duration: opts.duration,
+				delay: opts.delay,
+				motion: opts.motion,
+				before: opts.before,
+				done: opts.done
+			});
 		}
 
 	});
