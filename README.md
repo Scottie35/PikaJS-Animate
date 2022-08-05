@@ -146,7 +146,7 @@ Options that can be defined in the OPS_OBJECT are as follows:
 - duration - the time in ms to execute the fade. Default is 214 ms.
 - delay - Delay animation for this number of ms. Default is 0.
 - motion - Motion function use for `.animate`. Default is animation default.
-- position - Object that subtracts `position.top` / `position.left` so you can scroll the passed-in element to somewhere other than the top-left of the scrollable section. Positive values will scroll the target element down/right from the top-left corner of the scrollable parent. Default is: `position: {top: 0, left: 0}`
+- position - Object that subtracts `position.top` / `position.left` so you can scroll the passed-in element to somewhere other than the top-left of the scrollable section. Positive values will scroll the target element down/right from the top-left corner. Default is: `position: {top: 0, left: 0}`
 
 `.scroll` uses `.animate` internally to change `this[0].scrollTop` and `this[0].scrollLeft`. Note that you can check if an element IS actually scrollable by ensuring that `this[0].scrollHeight` > `this[0].clientHeight` (for vertical scrolling). Finally, ACHTUNG: Depending on your page CSS, you may need to set `position: relative` on the scrollable DIV/whatever to avoid inaccurate scrolling, overlapping of elements, and so on. The CSS 'overflow:scroll' property does weird things sometimes.
 
