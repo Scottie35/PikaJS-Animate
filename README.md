@@ -12,7 +12,7 @@ Animation plugin for PikaJS that is only **4.7kB** minified!!
 
 ## What does it do?
 
-Pika's Animate plugin provides 4 main simple yet powerful functions that enable you to do crazy-nifty animations.
+Pika's Animate plugin provides 5 main simple yet powerful functions that enable you to do crazy-nifty animations.
 
 The five main functions are: `.animate`, `.fade`, `.slide`, `.scrollTo`, and `.scroll`.
 
