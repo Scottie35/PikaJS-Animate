@@ -130,7 +130,25 @@ Options that can be defined in the OPS_OBJECT are as follows:
 - duration - the time in ms to execute the fade. Default is 400 ms.
 - offset - A positive or negative integer to add to the final scroll position. Default is 0.
 
-`.scrollTo` does NOT use `.animate` internally since it needs to animate window.scrollTo.
+`.scrollTo` does NOT use `.animate` internally since it needs to animate window.scrollTo. To scroll to a particular element inside a scrollable DIV, for example, use `.scroll` instead.
+
+### .scroll
+
+`.scroll` scrolls the passed-in (scrollable) Pika object's position so that the passed-in element is in view. Use it like so:
+
+    $('div.scrollable').scroll($('li.third'), OPTS_OBJECT);
+  
+For example: If you have your web page and there is a DIV element with `overflow-y: scroll` filled with a bunch of LIs, and you want to scroll that particular DIV to a particular LI (without touching the window scroll position), this is the function for you. To scroll the entire page, use `.scrollTo`.
+
+Options that can be defined in the OPS_OBJECT are as follows:
+
+- direction - 'vertical', 'horizontal', or 'both' scroll directions. Default is 'vertical'.
+- duration - the time in ms to execute the fade. Default is 214 ms.
+- delay - Delay animation for this number of ms. Default is 0.
+- motion - Motion function use for `.animate`. Default is animation default.
+- position - Object that substracts position.top / position.left so you can scroll the passed-in element to somewhere other than the top-left of the scrollable section.
+
+`.scroll` uses `.animate` internally to change `this[0].scrollTop` and `this[0].scrollLeft`. Note that you can check if an element IS actually scrollable by ensuring that `this[0].scrollHeight` > `this[0].clientHeight` (for vertical scrolling). Finally, ACHTUNG: Depending on your page CSS, you may need to set `position: relative` on the scrollable DIV/whatever to avoid inaccurate scrolling, overlapping of elements, and so on. The CSS 'overflow:scroll' property does weird things sometimes.
 
 ### Convenience Functions
 
