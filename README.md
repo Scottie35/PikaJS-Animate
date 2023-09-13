@@ -1,6 +1,6 @@
 # PikaJS-Animate
 
-Animation plugin for PikaJS that is only **4.7kB** minified!!
+Animation plugin for PikaJS that is only **5.4kB** minified!!
 
 [Try the PikaJS Demo!](https://pikajs.com/)
 
@@ -88,16 +88,24 @@ Note that `.animate` uses `requestAnimationFrame` if possible, and is more robus
 
 `.fade` does exactly what it sounds like. Use it like so:
 
-    $('whatever').fade(delay, remove, duration, dir);
+    $('whatever').fade(OPS_OBJECT);
   
-Options are as follows:
+Options in OPTS_OBJECT can be as follows:
 
 - delay - delay in ms before fading. Default is 0.
 - remove - removes element after fade. Default is false.
 - duration - the time in ms to execute the fade. Default is 214 ms.
 - dir - Either 'out' or 'in'. Default is 'out' (i.e. fade out)
+- before - callback function to run before fade
+- done - callback function to run after fade
 
 `.fade` uses `.animate` internally, including its own custom *before* and *done* functions.
+
+Note that you can also just pass in an integer as OPS_OBJECT, and the value will be used as the `delay` parameter, like so:
+
+		$('whatever').fade(2000);
+
+Pika Animate will fade $('whatever') after a delay of 2000ms = 2s.
 
 ### .slide
 
@@ -116,6 +124,8 @@ Options that can be defined in the OPS_OBJECT are as follows:
 - duration - the time in ms to execute the fade. Default is 400 ms.
 - dir - One of: 'up', 'down', 'left', 'right', 'upleft', 'downleft', 'upright', 'downright'. Order of words in diagonal dirs doesn't matter. Default is 'up' (i.e. slide up)
 - motion - One of the 8 predefined motion functions (see `.animate` for more info)
+- before - callback function to run before slide
+- done - callback function to run after slide
 
 `.slide` uses `.animate` internally, including its own custom *done* function.
 
