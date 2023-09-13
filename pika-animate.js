@@ -1,6 +1,6 @@
 /** 
- *	@license PikaJS Animate plugin 1.1.0
- *	© 2022 Scott Ogrin
+ *	@license PikaJS Animate plugin 1.2.0
+ *	© 2023 Scott Ogrin
  * 	MIT License
  */
 
@@ -8,7 +8,7 @@
 
  	// Some Motion funcs borrowed from: https://github.com/gdsmith/jquery.easing/
  	$.animate = {
- 		Version: '1.1.0',
+ 		Version: '1.2.0',
  		motion: {
  			// These funcs modify the progress, x, as it moves from 0.00 to 1.00 over the duration in ms
  			// If duration is too short, you won't really see the effects of most of these!
@@ -159,18 +159,31 @@
 
 		// Fade Fun
 
-		fade: function(delay, remove, duration, dir) {
-			dir = dir || 'out';
-			var op = (dir == 'out') ? 0 : 1;
-			if (dir == 'in') {
+		// fade: function(delay, remove, duration, dir) {
+		fade: function(opts) {
+			var el = $(this);
+			if ($.t(opts, 'n')) {
+				var num = opts;
+				opts = {};
+				opts.delay = num;
+			}
+			opts = opts || {};
+			opts.delay = opts.delay || 0;
+			opts.remove = opts.remove || false;
+			opts.duration = opts.duration || 214;
+			opts.dir = opts.dir || 'out';
+			if (opts.dir == 'in') {
 				this[0][Styl].opacity = 0;
 			}
-			this.animate({opacity: op}, {
-				delay: delay || 0,
-				remove: remove || false,
-				duration: duration || 214,
+			this.animate({opacity: (opts.dir == 'out') ? 0 : 1}, {
+				delay: opts.delay,
+				remove: opts.remove,
+				duration: opts.duration,
 				before: function() {
-					if (dir == 'in') {
+					if (!$.t(opts.before)) {
+			  		opts.before.call(el);
+			  	}
+					if (opts.dir == 'in') {
 						this[0][Styl].opacity = 0;
 						if (this[0][Styl].display == 'none') {
       				this[0][Styl].display = 'block';
@@ -179,10 +192,13 @@
 				},
 				done: function() {
 					if (this.length > 0) {
-						if (dir == 'out') {
+						if (opts.dir == 'out') {
 							this[0][Styl].display = 'none';	
 						}
 						this[0][Styl].opacity = '';
+						if (!$.t(opts.done)) {
+				  		opts.done.call(el);
+				  	}
 					}
 				}
 			});
@@ -251,6 +267,9 @@
 							position: elPos == 'static' ? '' : elPos
 						});
 						child[0][Styl].position = childPos == 'static' ? '' : childPos;
+						if (!$.t(opts.done)) {
+				  		opts.done.call($(el));
+				  	}
 		  		}
 		  	});
 		},
@@ -351,9 +370,11 @@
 	$.each({
 		fadeIn: 'in',
 		fadeOut: 'out'
-	}, function(name, props) {
-		$.fn[name] = function(dly, rem, dur) {
-			this.fade(dly, rem, dur, props);
+	}, function(name, prop) {
+		$.fn[name] = function(opts) {
+			opts = opts || {};
+			opts.dir = prop;
+			this.fade(opts);
 		}
 	});
 
