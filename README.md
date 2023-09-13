@@ -164,8 +164,8 @@ Options that can be defined in the OPS_OBJECT are as follows:
 
 PikaJS Animate includes 10 easy-to-use functions to get you rolling. They do exactly what they say!
 
-- `.fadeIn(delay, remove, duration)`
-- `.fadeOut(delay, remove, duration)`
+- `.fadeIn(OPTS_OBJECT)`
+- `.fadeOut(OPTS_OBJECT)`
 
 Remember when using these slide functions that if you call one to slide an element off the screen, you need to call the opposite function to bring it back.
 
