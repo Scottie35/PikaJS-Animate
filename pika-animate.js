@@ -1,14 +1,14 @@
 /** 
- *	@license PikaJS Animate plugin 1.2.0
- *	© 2023 Scott Ogrin
+ *	@license PikaJS Animate plugin 1.2.1
+ *	© 2023-2025 Scott Ogrin
  * 	MIT License
  */
 
- (function($,Doc,Styl,ReqAF,sT, pI, Mp) {
+ (function($,Doc,Styl,ReqAF,sT, pI, Mp, Pos) {
 
  	// Some Motion funcs borrowed from: https://github.com/gdsmith/jquery.easing/
  	$.animate = {
- 		Version: '1.2.0',
+ 		Version: '1.2.1',
  		motion: {
  			// These funcs modify the progress, x, as it moves from 0.00 to 1.00 over the duration in ms
  			// If duration is too short, you won't really see the effects of most of these!
@@ -66,11 +66,11 @@
 		//		- falls back to setTimeout if requestAnimationFrame is not available
 		animate: function(css, opts) {
 		  var el = $(this)[0], start, steps = {}, mofn;
-			opts = opts || {};
-			opts.duration = opts.duration || 400;
-			opts.remove = opts.remove || false;
-			opts.delay = opts.delay || 0;
-			opts.motion = opts.motion || $.animate.motion.default;
+			opts ??= {};
+			opts.duration ??= 400;
+			opts.remove ??= false;
+			opts.delay ??= 0;
+			opts.motion ??= $.animate.motion.default;
   		if ($.t(opts.motion, 's') && !$.t($.animate.motion[opts.motion])) {
   			mofn = $.animate.motion[opts.motion];
   		} else if ($.t(opts.motion, 'f')) {
@@ -105,7 +105,7 @@
 	      }
 	    }
 		  var go = function(time, el, dur) {
-		  	var time = time || +new Date;
+		  	var time = time ||  +new Date;
 		  	var runtime = time - start;
 		  	var progress = Math.min(runtime / dur, 1); // % complete, <= 1.00
 		  	var res;
@@ -167,11 +167,11 @@
 				opts = {};
 				opts.delay = num;
 			}
-			opts = opts || {};
-			opts.delay = opts.delay || 0;
-			opts.remove = opts.remove || false;
-			opts.duration = opts.duration || 214;
-			opts.dir = opts.dir || 'out';
+			opts ??= {};
+			opts.delay ??= 0;
+			opts.remove ??= false;
+			opts.duration ??= 214;
+			opts.dir ??= 'out';
 			if (opts.dir == 'in') {
 				this[0][Styl].opacity = 0;
 			}
@@ -208,11 +208,11 @@
 
 		slide: function(opts) {
 		  var el = $(this)[0];
-		  opts.delay = opts.delay || 0;
-		  opts.remove = opts.remove || false;
-		  opts.duration = opts.duration || 400;
-		  opts.dir = opts.dir || 'up';
-		  opts.motion = opts.motion || $.animate.motion.default;
+		  opts.delay ??= 0;
+		  opts.remove ??= false;
+		  opts.duration ??= 400;
+		  opts.dir ??= 'up';
+		  opts.motion ??= $.animate.motion.default;
 		  if (el[Styl].display == 'none') { return; }
 		  child = $(el).down();
 		  var elPos = this.css('position'),
@@ -220,8 +220,8 @@
 		  	childHt = child.height(),
 		  	childWd = child.width(),
 		  	elOverflow = this.css('overflow'),
-		  	elTop = pI(el[Styl].top || this.position().top),
-		  	elLeft = pI(el[Styl].left || this.position().left),
+		  	elTop = pI(el[Styl].top || this[Pos]().top),
+		  	elLeft = pI(el[Styl].left || this[Pos]().left),
 		  	styles = {},
 		  	acss = {},
 		  	dir = {};
@@ -238,13 +238,13 @@
 		  	if (!$.t(dir.right)) { dir.right = pI(dir.right); delete dir.left; }
 		  }
 		  // {position: absolute} is okay, but static is not; el overflow must be hidden
-		  if (elPos === 'static' || !elPos) { styles.position = 'relative'; }
+		  if (elPos === 'static' || !elPos) { styles[Pos] = 'relative'; }
 		  if (elOverflow !== 'hidden') { styles.overflow = 'hidden'; }
 		  styles.top = elTop + 'px';
 		  styles.left = elLeft + 'px';
 			this.css(styles);
 		  if (childPos === 'static' || !childPos) {
-		  	child[0][Styl].position = 'relative';
+		  	child[0][Styl][Pos] = 'relative';
 		  }
 		  // Do: up, down, left, right, upleft, upright, downleft, downright
 		  if (dir.up) { acss.top = (elTop - dir.up) + 'px'; }
@@ -266,7 +266,7 @@
 							overflow: elOverflow,
 							position: elPos == 'static' ? '' : elPos
 						});
-						child[0][Styl].position = childPos == 'static' ? '' : childPos;
+						child[0][Styl][Pos] = childPos == 'static' ? '' : childPos;
 						if (!$.t(opts.done)) {
 				  		opts.done.call($(el));
 				  	}
@@ -277,10 +277,10 @@
 		// Misc
 
 		scrollTo: function(opts) {
-			var el = $(this)[0], de=Doc.documentElement, db=Doc.body, Win = window, sTo=Win.scrollTo, mR = Math.round;
-			opts = opts || {};
-			opts.duration = opts.duration || 400;
-			opts.offset = opts.offset || 0;
+			var el = $(this)[0], start, de=Doc.documentElement, db=Doc.body, Win = window, sTo=Win.scrollTo, mR = Math.round;
+			opts ??= {};
+			opts.duration ??= 400;
+			opts.offset ??= 0;
 			var skrol = {
 				left: mR(Win.pageXOffset || de.scrollLeft || db.scrollLeft),
 				top: mR(Win.pageYOffset || de.scrollTop || db.scrollTop)
@@ -340,19 +340,19 @@
 		// Scrolls passed-in element so that el (target element) is at opts.position of scrollable 'this'
 		scroll: function(el, opts) {
 			var css = {};
-			opts = opts || {};
-			opts.direction = opts.direction || 'vertical';
-			opts.duration = opts.duration || 214;
-			opts.delay = opts.delay || 0;
-			opts.motion = opts.motion || $.animate.motion.default;
-			opts.position = opts.position || {};
-			opts.position.top = opts.position.top || 0;
-			opts.position.left = opts.position.left || 0;
+			opts ??= {};
+			opts.direction ??= 'vertical';
+			opts.duration ??= 214;
+			opts.delay ??= 0;
+			opts.motion ??= $.animate.motion.default;
+			opts[Pos] ??= {};
+			opts[Pos].top ??= 0;
+			opts[Pos].left ??= 0;
 			if (opts.direction == 'vertical' || opts.direction == 'both') {
-				css.scrollTop = pI(this[0].scrollTop + el.position().top - opts.position.top);
+				css.scrollTop = pI(this[0].scrollTop + el[Pos]().top - opts[Pos].top);
 			}
 			if (opts.direction == 'horizontal' || opts.direction == 'both') {
-				css.scrollLeft = pI(this[0].scrollLeft + el.position().left - opts.position.left);
+				css.scrollLeft = pI(this[0].scrollLeft + el[Pos]().left - opts[Pos].left);
 			}
 			this.animate(css, {
 				duration: opts.duration,
@@ -393,4 +393,4 @@
 		}
 	});
 
-})(Pika, document, 'style', window.requestAnimationFrame, setTimeout, parseInt, Math.pow);
+})(Pika, document, 'style', window.requestAnimationFrame, setTimeout, parseInt, Math.pow, 'position');
