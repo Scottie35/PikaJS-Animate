@@ -1,6 +1,6 @@
 # PikaJS-Animate
 
-Animation plugin for PikaJS that is only **5.4kB** minified!!
+Animation plugin for PikaJS that is only **5.3 kB** minified!!
 
 [Try the PikaJS Demo!](https://pikajs.com/)
 
